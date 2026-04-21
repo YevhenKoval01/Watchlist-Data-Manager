@@ -1,4 +1,4 @@
-# Watchlist CLI Manager
+# Watchlist Data Manager
 
 A lightweight Command Line Interface (CLI) application built with Python to manage and track your movie or series watchlist. [cite_start]This project was developed as part of a programming assignment at the Polish-Japanese Academy of Information Technology (PJATK)[cite: 25, 27].
 
