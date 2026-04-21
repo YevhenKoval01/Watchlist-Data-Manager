@@ -1,6 +1,6 @@
 # Watchlist CLI Manager
 
-A lightweight Command Line Interface (CLI) application built with Python to manage and track your movie or series watchlist. This project was developed as part of a programming assignment at the Polish-Japanese Academy of Information Technology (PJATK).
+A lightweight Command Line Interface (CLI) application built with Python to manage and track your movie or series watchlist. [cite_start]This project was developed as part of a programming assignment at the Polish-Japanese Academy of Information Technology (PJATK)[cite: 25, 27].
 
 ## 🚀 Features
 
@@ -24,5 +24,5 @@ A lightweight Command Line Interface (CLI) application built with Python to mana
 
 1. **Clone the repository**:
    ```bash
-   git clone [https://github.com/your-username/watchlist-cli.git](https://github.com/your-username/watchlist-cli.git)
-   cd watchlist-cli
+   git clone [https://github.com/YevhenKoval01/Watchlist-Data-Manager.git](https://github.com/YevhenKoval01/Watchlist-Data-Manager.git)
+   cd Watchlist-Data-Manager
