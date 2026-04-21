@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Jurassic Park",
+    "director": "Steven Spielberg",
+    "year": 1993,
+    "genre": "Science Fiction",
+    "status": "obejrzany",
+    "rating": 9,
+    "description": "Dinozaury wracają do życia.",
+    "watched_on": "2024-12-01T20:00:00"
+  },
+  {
+    "title": "Jurassic World",
+    "director": "Colin Trevorrow",
+    "year": 2015,
+    "genre": "Science Fiction",
+    "status": "obejrzany",
+    "rating": 7,
+    "description": "Nowy park, nowe problemy.",
+    "watched_on": "2025-01-05T21:30:00"
+  },
+  {
+    "title": "The Lost World: Jurassic Park",
+    "director": "Steven Spielberg",
+    "year": 1997,
+    "genre": "Science Fiction",
+    "status": "nieobejrzany",
+    "rating": null,
+    "description": "Eksploracja drugiej wyspy.",
+    "watched_on": null
+  },
+  {
+    "title": "Saw",
+    "director": "James Wan",
+    "year": 2004,
+    "genre": "Horror",
+    "status": "obejrzany",
+    "rating": 8,
+    "description": "Gra o przetrwanie.",
+    "watched_on": "2024-10-31T23:00:00"
+  },
+  {
+    "title": "Saw II",
+    "director": "Darren Lynn Bousman",
+    "year": 2005,
+    "genre": "Horror",
+    "status": "obejrzany",
+    "rating": 7,
+    "description": "Więcej pułapek, więcej ofiar.",
+    "watched_on": "2024-11-01T22:45:00"
+  },
+  {
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "year": 2010,
+    "genre": "Thriller",
+    "status": "nieobejrzany",
+    "rating": null,
+    "description": "Sny w snach.",
+    "watched_on": null
+  },
+  {
+    "title": "Revolver",
+    "director": "Guy Ritchie",
+    "year": 2005,
+    "genre": "Crime",
+    "status": "obejrzany",
+    "rating": 6,
+    "description": "Intryga, manipulacja i zemsta.",
+    "watched_on": "2025-02-14T20:45:00"
+  },
+  {
+    "title": "Interstellar",
+    "director": "Christopher Nolan",
+    "year": 2014,
+    "genre": "Science Fiction",
+    "status": "obejrzany",
+    "rating": 10,
+    "description": "Misja ratunkowa przez czas i przestrzeń.",
+    "watched_on": "2025-03-10T19:00:00"
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "director": "Frank Darabont",
+    "year": 1994,
+    "genre": "Drama",
+    "status": "nieobejrzany",
+    "rating": null,
+    "description": "Nadzieja w najciemniejszych miejscach.",
+    "watched_on": null
+  }
+]
