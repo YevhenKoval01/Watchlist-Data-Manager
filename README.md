@@ -24,5 +24,5 @@ A lightweight Command Line Interface (CLI) application built with Python to mana
 
 1. **Clone the repository**:
    ```bash
-   git clone [https://github.com/YevhenKoval01/Watchlist-Data-Manager.git](https://github.com/YevhenKoval01/Watchlist-Data-Manager.git)
+   git clone [https://github.com/YevhenKoval01/Watchlist-Data-Manager.git]
    cd Watchlist-Data-Manager
