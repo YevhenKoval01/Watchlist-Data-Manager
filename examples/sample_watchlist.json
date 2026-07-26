@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Jurassic Park",
+    "director": "Steven Spielberg",
+    "year": 1993,
+    "genre": "Science Fiction",
+    "status": "watched",
+    "rating": 9,
+    "description": "A theme park brings dinosaurs back to life.",
+    "watched_on": "2024-12-01T20:00:00+01:00"
+  },
+  {
+    "title": "The Lost World: Jurassic Park",
+    "director": "Steven Spielberg",
+    "year": 1997,
+    "genre": "Science Fiction",
+    "status": "planned",
+    "rating": null,
+    "description": "A research team explores a second island.",
+    "watched_on": null
+  },
+  {
+    "title": "Saw",
+    "director": "James Wan",
+    "year": 2004,
+    "genre": "Horror",
+    "status": "watched",
+    "rating": 8,
+    "description": "Two strangers face a deadly survival game.",
+    "watched_on": "2024-10-31T23:00:00+01:00"
+  },
+  {
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "year": 2010,
+    "genre": "Thriller",
+    "status": "planned",
+    "rating": null,
+    "description": "A specialist enters layered dreams to plant an idea.",
+    "watched_on": null
+  },
+  {
+    "title": "Interstellar",
+    "director": "Christopher Nolan",
+    "year": 2014,
+    "genre": "Science Fiction",
+    "status": "watched",
+    "rating": 10,
+    "description": "Explorers travel through a wormhole to find a new home for humanity.",
+    "watched_on": "2025-03-10T19:00:00+01:00"
+  }
+]

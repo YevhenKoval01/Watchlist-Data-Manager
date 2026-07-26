@@ -1,28 +1,106 @@
 # Watchlist Data Manager
 
-A lightweight Command Line Interface (CLI) application built with Python to manage and track your movie or series watchlist. This project was developed as part of a programming assignment at the Polish-Japanese Academy of Information Technology (PJATK).
+Watchlist Data Manager is a local command-line application for organizing a
+movie collection. It supports validated CRUD operations, text search, sorting,
+statistics, TSV export, optional Matplotlib charts, and JSON persistence.
 
-## 🚀 Features
+This repository began as a single-file university assignment and is being
+refactored into a tested Python package suitable for continued development.
 
-- **Full CRUD operations**: Add, view, edit, and delete movies from your collection.
-- **Search & Filtering**: Quickly find movies using regular expression search.
-- **Data Persistence**: All data is stored locally in a `watchlist_db.json` file.
-- **Statistics & Analytics**: 
-  - Calculate average ratings and identify top-rated titles.
-  - View genre distribution.
-  - Interactive histograms and charts using **Matplotlib**.
-- **Exporting**: Save your list to a tab-separated text/CSV file for external use.
+## Current Capabilities
 
-## 🛠️ Tech Stack
+- Add, list, edit, and delete watchlist entries
+- Track planned and watched movies with optional ratings
+- Search by title, director, or genre
+- Sort without changing the stored collection order
+- Calculate rating and genre statistics
+- Export the collection as a UTF-8 tab-separated file
+- Save JSON data through atomic file replacement
+- Read legacy Polish status values from the original dataset
 
-- **Language**: Python 3.x
-- **Storage**: JSON
-- **Visualization**: Matplotlib
-- **Standard Modules used**: `pathlib`, `json`, `re`, `statistics`, `csv`, `datetime`.
+## Requirements
 
-## 📦 Installation & Setup
+- Python 3.10 or newer
+- Matplotlib is optional and only required for charts
 
-1. **Clone the repository**:
+## Development Setup
+
+1. Clone the repository:
+
    ```bash
-   git clone [https://github.com/YevhenKoval01/Watchlist-Data-Manager.git]
+   git clone https://github.com/YevhenKoval01/Watchlist-Data-Manager.git
    cd Watchlist-Data-Manager
+   ```
+
+2. Create and activate a virtual environment:
+
+   ```bash
+   python -m venv .venv
+   ```
+
+   Windows PowerShell:
+
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
+
+   Linux or macOS:
+
+   ```bash
+   source .venv/bin/activate
+   ```
+
+3. Install the package and development tools:
+
+   ```bash
+   python -m pip install --upgrade pip
+   pip install -e ".[dev,charts]"
+   ```
+
+## Run the Application
+
+Start with an empty local database:
+
+```bash
+watchlist
+```
+
+Choose another database file:
+
+```bash
+watchlist --database examples/sample_watchlist.json
+```
+
+The default `watchlist.json` file contains personal application data and is
+ignored by Git.
+
+## Quality Checks
+
+```bash
+pytest
+ruff check .
+python -m compileall -q src tests
+```
+
+## Project Structure
+
+```text
+.
+|-- examples/                    # Sanitized example data
+|-- src/watchlist_manager/
+|   |-- cli.py                   # Interactive terminal interface
+|   |-- models.py                # Domain model and validation
+|   |-- repository.py            # Atomic JSON persistence
+|   |-- service.py               # CRUD, search, sorting, and statistics
+|   `-- export.py                # Tab-separated export
+|-- tests/                       # Automated test suite
+|-- pyproject.toml               # Packaging and tool configuration
+`-- README.md
+```
+
+## Refactoring Status
+
+The first refactoring phase establishes the package architecture, validated
+domain model, persistence boundary, and automated tests. The next phase will
+focus on richer commands, stronger recovery behavior, CI, and final portfolio
+documentation.
