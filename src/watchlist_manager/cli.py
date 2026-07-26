@@ -40,6 +40,8 @@ class InteractiveCLI:
             "6": ("Sort and display", self.sort_collection),
             "7": ("Export to TSV", self.export_collection),
             "8": ("Show statistics", self.show_statistics),
+            "9": ("Filter the collection", self.filter_collection),
+            "10": ("Recommend a planned movie", self.recommend_movie),
             "0": ("Exit", None),
         }
 
@@ -211,6 +213,40 @@ class InteractiveCLI:
         )
         if show_charts.casefold() in {"y", "yes"}:
             self._show_charts(statistics)
+
+    def filter_collection(self) -> None:
+        """Display movies matching optional filters."""
+        status = self._read_text(
+            "Status [planned/watched] (optional): ",
+            allow_empty=True,
+        )
+        genre = self._read_text("Genre (optional): ", allow_empty=True)
+        minimum_rating = self._read_integer(
+            "Minimum rating 0-10 (optional): ",
+            allow_empty=True,
+            minimum=0,
+            maximum=10,
+        )
+        results = self.service.filter_movies(
+            status=status or None,
+            genre=genre or None,
+            minimum_rating=minimum_rating,
+        )
+        self._display_movies(results)
+        self._output(f"Found: {len(results)}")
+
+    def recommend_movie(self) -> None:
+        """Recommend one unwatched movie, optionally from a selected genre."""
+        genre = self._read_text(
+            "Preferred genre (optional): ",
+            allow_empty=True,
+        )
+        recommendation = self.service.recommend(genre=genre or None)
+        year = f" ({recommendation.year})" if recommendation.year else ""
+        genre_label = recommendation.genre or "Unspecified genre"
+        self._output(
+            f"Recommendation: {recommendation.title}{year} - {genre_label}"
+        )
 
     def _display_movies(self, movies: Sequence[Movie]) -> None:
         if not movies:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import unittest
 from collections.abc import Sequence
+from random import Random
 
 from watchlist_manager.errors import MovieNotFoundError, ValidationError
 from watchlist_manager.models import Movie, WatchStatus
@@ -108,6 +109,48 @@ class WatchlistServiceTests(unittest.TestCase):
 
     def test_empty_search_returns_all_movies(self) -> None:
         self.assertEqual(self.service.search("  "), list(self.service.movies))
+
+    def test_filters_by_status_genre_and_rating(self) -> None:
+        watched_science_fiction = self.service.filter_movies(
+            status="watched",
+            genre="science fiction",
+            minimum_rating=9,
+        )
+
+        self.assertEqual(
+            [movie.title for movie in watched_science_fiction],
+            ["Inception"],
+        )
+
+    def test_filter_excludes_unrated_movies_from_minimum_rating(self) -> None:
+        results = self.service.filter_movies(minimum_rating=8)
+
+        self.assertEqual([movie.title for movie in results], ["Inception", "Saw"])
+
+    def test_rejects_invalid_minimum_rating(self) -> None:
+        for rating in (-1, 11, True, "8"):
+            with self.subTest(rating=rating), self.assertRaisesRegex(
+                ValidationError, "Minimum rating"
+            ):
+                self.service.filter_movies(minimum_rating=rating)
+
+    def test_recommends_only_planned_movies(self) -> None:
+        recommendation = self.service.recommend(random_source=Random(42))
+
+        self.assertEqual(recommendation.title, "Arrival")
+        self.assertIs(recommendation.status, WatchStatus.PLANNED)
+
+    def test_recommendation_can_be_limited_by_genre(self) -> None:
+        recommendation = self.service.recommend(
+            genre="science fiction",
+            random_source=Random(42),
+        )
+
+        self.assertEqual(recommendation.title, "Arrival")
+
+    def test_recommendation_reports_when_no_candidate_exists(self) -> None:
+        with self.assertRaisesRegex(MovieNotFoundError, "Horror"):
+            self.service.recommend(genre="Horror")
 
     def test_sort_does_not_change_persisted_order(self) -> None:
         sorted_titles = [

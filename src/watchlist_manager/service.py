@@ -6,6 +6,7 @@ from collections import Counter
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass, replace
 from datetime import datetime
+from random import Random, SystemRandom
 from statistics import mean
 from typing import Any
 
@@ -107,6 +108,48 @@ class WatchlistService:
                 for value in (movie.title, movie.director, movie.genre)
             )
         ]
+
+    def filter_movies(
+        self,
+        *,
+        status: WatchStatus | str | None = None,
+        genre: str | None = None,
+        minimum_rating: int | None = None,
+    ) -> list[Movie]:
+        """Filter by optional status, genre, and minimum rating."""
+        parsed_status = WatchStatus.parse(status) if status is not None else None
+        normalized_genre = genre.strip().casefold() if genre else None
+        if minimum_rating is not None and (
+            isinstance(minimum_rating, bool)
+            or not isinstance(minimum_rating, int)
+            or not 0 <= minimum_rating <= 10
+        ):
+            raise ValidationError("Minimum rating must be between 0 and 10.")
+
+        return [
+            movie
+            for movie in self._movies
+            if (parsed_status is None or movie.status is parsed_status)
+            and (normalized_genre is None or movie.genre.casefold() == normalized_genre)
+            and (
+                minimum_rating is None
+                or (movie.rating is not None and movie.rating >= minimum_rating)
+            )
+        ]
+
+    def recommend(
+        self,
+        *,
+        genre: str | None = None,
+        random_source: Random | None = None,
+    ) -> Movie:
+        """Choose one planned movie, optionally restricted to a genre."""
+        candidates = self.filter_movies(status=WatchStatus.PLANNED, genre=genre)
+        if not candidates:
+            qualifier = f" in genre '{genre.strip()}'" if genre else ""
+            raise MovieNotFoundError(f"No planned movies are available{qualifier}.")
+        chooser = random_source or SystemRandom()
+        return chooser.choice(candidates)
 
     def sorted_movies(self, field: str, *, reverse: bool = False) -> list[Movie]:
         """Return a sorted copy without changing persisted order."""
